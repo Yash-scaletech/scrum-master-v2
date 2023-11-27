@@ -52,7 +52,9 @@ const Action: FC = () => {
 				await httpService.put(API_CONFIG.path.leaveStatus, params).then((res) => {
 					setIsStatusLoading(false);
 					let currentIndex = action.index;
-					leaveData[currentIndex] = res.data;
+					leaveData[currentIndex].status = res.data.status;
+					leaveData[currentIndex].myStatus = res.data.myStatus;
+					leaveData[currentIndex].leadNote = res.data.leadNote;
 				});
 			} catch (error) {
 				setIsStatusLoading(false);

@@ -76,7 +76,7 @@ const TeamDetails: FC<ITeamInfoProps> = ({ teamInfo, teamLoading, onClose }) => 
 													<Box>
 														{projectDetails.map((project, projectIndex) => (
 															<div key={projectIndex}>
-																{project.projectName}
+																{project.projectName} ({project.leadName})
 																{projectIndex < projectDetails.length - 1 && ','}
 															</div>
 														))}

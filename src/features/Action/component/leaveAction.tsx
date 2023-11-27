@@ -126,7 +126,6 @@ const LeaveAction: FC<IProps> = ({ leaveData, setLeaveData, setSelectedItem, set
 													moment(item).format('YYYY-MM-DD')
 												);
 												if (datesArray.includes(moment(date).format('YYYY-MM-DD'))) {
-													console.log('datesArray:', datesArray);
 													return {
 														style: {
 															backgroundColor: '#228be6',
