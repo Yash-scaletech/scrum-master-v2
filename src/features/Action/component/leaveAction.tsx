@@ -1,7 +1,14 @@
 import React, { FC } from 'react';
 
 import { Box, Divider, Flex, Group, Image, Paper, Space, Text, TextInput, Tooltip, createStyles } from '@mantine/core';
-import { IconCalendar, IconThumbDown, IconThumbUp } from '@tabler/icons-react';
+import {
+	IconBeach,
+	IconCalendar,
+	IconDeviceLaptop,
+	IconReportMedical,
+	IconThumbDown,
+	IconThumbUp
+} from '@tabler/icons-react';
 import moment from 'moment';
 
 import { dateFormate } from 'shared/util/utility';
@@ -170,43 +177,32 @@ const LeaveAction: FC<IProps> = ({ leaveData, setLeaveData, setSelectedItem, set
 										marginTop: '15px'
 									}}
 								>
-									{requestType === 'leave' ? (
-										<Box sx={{ width: '50%' }}>
-											<Text color='' fw={600} fz={'14px'}>
-												Duration
+									<Box sx={{ width: '50%' }}>
+										<Text fw={600} fz={'14px'}>
+											Reason
+										</Text>
+										<Tooltip
+											sx={{
+												maxWidth: '200px',
+												wordWrap: 'break-word',
+												textWrap: 'balance',
+												height: 'auto',
+												textAlign: 'center'
+											}}
+											inline
+											position='top-start'
+											label={reason}
+											color='#1c7ed6'
+											transitionProps={{
+												transition: 'slide-down',
+												duration: 300
+											}}
+										>
+											<Text fz='14px' color='#B5B5C3' fw={600} truncate>
+												{reason}
 											</Text>
-											<Text fz='14px' color='#B5B5C3' fw={600}>
-												{duration}
-											</Text>
-										</Box>
-									) : (
-										<Box sx={{ width: '50%' }}>
-											<Text fw={600} fz={'14px'}>
-												Reason
-											</Text>
-											<Tooltip
-												sx={{
-													maxWidth: '200px',
-													wordWrap: 'break-word',
-													textWrap: 'balance',
-													height: 'auto',
-													textAlign: 'center'
-												}}
-												inline
-												position='top-start'
-												label={reason}
-												color='#1c7ed6'
-												transitionProps={{
-													transition: 'slide-down',
-													duration: 300
-												}}
-											>
-												<Text fz='14px' color='#B5B5C3' fw={600} truncate>
-													{reason}
-												</Text>
-											</Tooltip>
-										</Box>
-									)}
+										</Tooltip>
+									</Box>
 
 									<Box sx={{ width: '50%' }}>
 										<Text color='' fz={'14px'} fw={600}>
@@ -221,7 +217,7 @@ const LeaveAction: FC<IProps> = ({ leaveData, setLeaveData, setSelectedItem, set
 
 							<Box sx={{ width: '25%', marginTop: '20px', marginLeft: '25px' }}>
 								<Flex justify={'space-between'} sx={{ width: '100%' }}>
-									{requestType === 'leave' && (
+									{/* {requestType === 'leave' && (
 										<Box sx={{ width: '50%' }}>
 											<Text fw={600} fz={'14px'}>
 												Leave Type
@@ -230,7 +226,7 @@ const LeaveAction: FC<IProps> = ({ leaveData, setLeaveData, setSelectedItem, set
 												{leaveType}
 											</Text>
 										</Box>
-									)}
+									)} */}
 
 									<Box sx={{ width: '50%' }}>
 										<Text color='' fz={'14px'} fw={600}>
@@ -248,40 +244,22 @@ const LeaveAction: FC<IProps> = ({ leaveData, setLeaveData, setSelectedItem, set
 										width: '100%'
 									}}
 								>
-									<Box sx={{ width: '50%' }}>
+									{/* <Box sx={{ width: '50%' }}>
 										<Text fw={600} fz={'14px'}>
 											Status
 										</Text>
 										<Text fw='600' fz='14px' color='#ffb703'>
 											{status}
 										</Text>
-									</Box>
+									</Box> */}
 									{requestType === 'leave' && (
 										<Box sx={{ width: '50%' }}>
-											<Text fw={600} fz={'14px'}>
-												Reason
+											<Text color='' fw={600} fz={'14px'}>
+												Duration
 											</Text>
-											<Tooltip
-												sx={{
-													maxWidth: '200px',
-													wordWrap: 'break-word',
-													textWrap: 'balance',
-													height: 'auto',
-													textAlign: 'center'
-												}}
-												inline
-												position='top-start'
-												label={reason}
-												color='#1c7ed6'
-												transitionProps={{
-													transition: 'slide-down',
-													duration: 300
-												}}
-											>
-												<Text fz='14px' color='#B5B5C3' fw={600} truncate>
-													{reason}
-												</Text>
-											</Tooltip>
+											<Text fz='14px' color='#B5B5C3' fw={600}>
+												{duration}
+											</Text>
 										</Box>
 									)}
 								</Flex>
@@ -294,22 +272,26 @@ const LeaveAction: FC<IProps> = ({ leaveData, setLeaveData, setSelectedItem, set
 								}}
 							>
 								<Flex
+									direction={'column'}
 									justify={'center'}
 									align={'center'}
-									sx={{ width: '40%' }}
+									sx={{ width: '28%' }}
 									m={'xs'}
 									style={{
-										background: `${
-											requestType === 'wfh' ? 'rgba(0, 0, 255, 0.1)' : 'rgba(255, 0, 0, 0.1)'
-										}`,
+										background: `${requestType === 'wfh' ? '#F1FAFF' : '#FFF5F8'}`,
 										borderRadius: '10px',
 										padding: '10px',
 										height: '100px'
 									}}
 								>
+									{requestType === 'wfh' ? (
+										<IconDeviceLaptop size='50' strokeWidth={2} color={'#009EF7'} />
+									) : (
+										<IconBeach size='50' strokeWidth={2} color={'#F1416C'} />
+									)}
 									<Text
 										fz='14px'
-										color={`${requestType === 'wfh' ? 'blue' : 'red'}`}
+										color={`${requestType === 'wfh' ? '#009EF7' : '#F1416C'}`}
 										fw={600}
 										truncate
 									>
