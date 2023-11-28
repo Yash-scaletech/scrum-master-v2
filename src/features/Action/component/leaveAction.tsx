@@ -62,7 +62,7 @@ const LeaveAction: FC<IProps> = ({ leaveData, setLeaveData, setSelectedItem, set
 
 				return (
 					<Paper key={index}>
-						<Flex justify={'space-between'}>
+						<Flex justify={'space-between'} align={'center'}>
 							<Flex align={'center'} justify={'space-between'}>
 								<Image maw={50} radius='md' src={avatar ?? avatar} alt={realName} />
 								<Space w='sm' />
@@ -76,9 +76,23 @@ const LeaveAction: FC<IProps> = ({ leaveData, setLeaveData, setSelectedItem, set
 								</Flex>
 							</Flex>
 							<Flex>
-								<Text fz={'sm'} fw={700} color='#B5B5C3'>
-									{projectName}
-								</Text>
+								{projectName.split(',').map((name) => {
+									return (
+										<Text
+											fz={'sm'}
+											fw={700}
+											color='#B5B5C3'
+											style={{
+												padding: '6px',
+												border: '1px dashed #DBDFE9',
+												borderRadius: '6px'
+											}}
+											mr={'5px'}
+										>
+											{name}
+										</Text>
+									);
+								})}
 							</Flex>
 						</Flex>
 
@@ -274,13 +288,35 @@ const LeaveAction: FC<IProps> = ({ leaveData, setLeaveData, setSelectedItem, set
 							</Box>
 
 							<Flex
-								direction={'column'}
-								align={'flex-end'}
+								align={'center'}
 								sx={{
 									width: '50%'
 								}}
 							>
-								<Box sx={{ width: '60%' }}>
+								<Flex
+									justify={'center'}
+									align={'center'}
+									sx={{ width: '40%' }}
+									m={'xs'}
+									style={{
+										background: `${
+											requestType === 'wfh' ? 'rgba(0, 0, 255, 0.1)' : 'rgba(255, 0, 0, 0.1)'
+										}`,
+										borderRadius: '10px',
+										padding: '10px',
+										height: '100px'
+									}}
+								>
+									<Text
+										fz='14px'
+										color={`${requestType === 'wfh' ? 'blue' : 'red'}`}
+										fw={600}
+										truncate
+									>
+										{requestType === 'wfh' ? 'Work From Home' : 'Leave'}
+									</Text>
+								</Flex>
+								<Box sx={{ width: '60%' }} m={'xs'}>
 									<TextInput
 										styles={{
 											label: { fontSize: '14px', fontWeight: 600, color: '#717981' },
