@@ -43,7 +43,7 @@ const TeamCalendar: FC = () => {
 
 	/* API call to get team report */
 	const getTeamReport = useCallback(
-		(projectId?: string, month = (new Date().getMonth() + 1).toString(), userId?: string) => {
+		(projectId?: string, month = `${new Date().getMonth() + 1}-${new Date().getFullYear()}`, userId?: string) => {
 			dispatch(createAction(actionTypes.SET_MONTH, month));
 
 			const params = {
@@ -158,7 +158,9 @@ const TeamCalendar: FC = () => {
 	/* For next back of calendar month */
 	const handleNavigate = (newDate) => {
 		const month = newDate.getMonth() + 1;
-		getTeamReport(pId, month, uId);
+		const year = newDate.getFullYear();
+		const monthAndYear = `${month}-${year}`;
+		getTeamReport(pId, monthAndYear, uId);
 	};
 
 	return (
